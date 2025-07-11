@@ -5,7 +5,7 @@ pub fn build(b: *std.Build) void {
     const optimize = b.standardOptimizeOption(.{});
 
     const exe = b.addExecutable(.{
-        .name = "hello",
+        .name = "redis-server",
         .root_source_file = b.path("src/main.zig"),
         .target = target,
         .optimize = optimize,
@@ -13,7 +13,7 @@ pub fn build(b: *std.Build) void {
 
     exe.addCSourceFile(.{
         .file = b.path("src/server.cpp"),
-        .flags = &.{"-std=c++11"},
+        .flags = &.{ "-std=c++17", "-Wall", "-Wextra" },
     });
 
     exe.linkLibCpp();
@@ -26,4 +26,3 @@ pub fn build(b: *std.Build) void {
     const run_step = b.step("run", "Run the app");
     run_step.dependOn(&run_cmd.step);
 }
-
