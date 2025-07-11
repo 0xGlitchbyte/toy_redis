@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <sys/socket.h>
 
-int main(int argc, char *argv[]) {
+extern "C" void c_main() {
   // fd = socket()
   // bind(fd, address)
   // listen(fd)
@@ -9,6 +9,6 @@ int main(int argc, char *argv[]) {
   //   conn_fd = accept(fd)
   //   do_something_with(conn_fd)
   //   close(conn_fd)
-  int fd = socket(AF_INET, SOCK_STREAM, 0);
-  return 0;
+  // int fd = socket(AF_INET, SOCK_STREAM, 0);
+  printf("Hello Bitwarden!\n");
 }
