@@ -10,5 +10,5 @@ extern "C" void c_main() {
   //   do_something_with(conn_fd)
   //   close(conn_fd)
   // int fd = socket(AF_INET, SOCK_STREAM, 0);
-  printf("Hello Bitwarden!\n");
+  printf("Hello World!\n");
 }
