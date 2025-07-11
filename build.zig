@@ -6,23 +6,18 @@ pub fn build(b: *std.Build) void {
 
     const exe = b.addExecutable(.{
         .name = "redis-server",
-        .root_source_file = b.path("src/main.zig"),
+        .root_source_file = null, //b.path("src/main.cpp"),
         .target = target,
         .optimize = optimize,
     });
 
-    exe.addCSourceFile(.{
-        .file = b.path("src/server.cpp"),
+    exe.addCSourceFiles(.{
+        .files = &[_][]const u8{"src/main.cpp"},
         .flags = &.{ "-std=c++17", "-Wall", "-Wextra" },
     });
 
+    exe.linkLibC();
     exe.linkLibCpp();
 
     b.installArtifact(exe);
-
-    const run_cmd = b.addRunArtifact(exe);
-    run_cmd.step.dependOn(b.getInstallStep());
-
-    const run_step = b.step("run", "Run the app");
-    run_step.dependOn(&run_cmd.step);
 }

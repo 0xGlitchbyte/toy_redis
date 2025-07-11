@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <sys/socket.h>
 
-extern "C" void c_main() {
+int main(void) {
   // fd = socket()
   // bind(fd, address)
   // listen(fd)
